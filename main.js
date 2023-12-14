@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuHamburguesaIcon = document.querySelector('.menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
-const detalleProductos = document.querySelector('.product-detail');
+const shoppingCarContainer = document.querySelector('#shoppingCarCarrito');
 const cardContainer = document.querySelector('.cards-container');
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
@@ -11,19 +11,19 @@ menuHamburguesaIcon.addEventListener('click', toogleMobileMenu);
 menuCarritoIcon.addEventListener('click', toogleCarritoMenu);
 
 function toggleDesktopMenu(){
-    const isCarritoProductosClose = detalleProductos.classList.contains('inactive');
+    const isCarritoProductosClose = shoppingCarContainer.classList.contains('inactive');
 
     if(!isCarritoProductosClose){
-        detalleProductos.classList.add('inactive');
+        shoppingCarContainer.classList.add('inactive');
     }
     desktopMenu.classList.toggle('inactive');
 }
 
 function toogleMobileMenu(){
-    const isCarritoProductosClose = detalleProductos.classList.contains('inactive');
+    const isCarritoProductosClose = shoppingCarContainer.classList.contains('inactive');
 
     if(!isCarritoProductosClose){
-        detalleProductos.classList.add('inactive');
+        shoppingCarContainer.classList.add('inactive');
     }
     mobileMenu.classList.toggle('inactive');
 }
@@ -40,7 +40,7 @@ function toogleCarritoMenu(){
         desktopMenu.classList.add('inactive');
     }
 
-    detalleProductos.classList.toggle('inactive');
+    shoppingCarContainer.classList.toggle('inactive');
 
 }
 
@@ -96,16 +96,9 @@ function renderProducts(arr){
         // -------- Organizar Elementos ---------- //
     
         productFigure.appendChild(imgIcon);
-    
-        productInfoDiv.appendChild(productPrice);
-        productInfoDiv.appendChild(productName);
-    
-        productInfo.appendChild(productInfoDiv);
-        productInfo.appendChild(productFigure);
-    
-        productCard.appendChild(productImage);
-        productCard.appendChild(productInfo);
-    
+        productInfoDiv.append(productPrice,productName);
+        productInfo.append(productInfoDiv, productFigure);
+        productCard.append(productImage, productInfo);
         cardContainer.appendChild(productCard);
     }
 }
